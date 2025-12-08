@@ -1,233 +1,1069 @@
-<!DOCTYPE html>
-<head>
-  <meta charset="UTF-8" />
-  <title>Project 52 — футбольный магазин</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+/* ========= БАЗА ========= */
 
-  <!-- ПРАВИЛЬНЫЙ ПУТЬ К CSS -->
-  <link rel="stylesheet" href="../CSS/styles.css" />
-</head>
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-<body>
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #05060a;
+  color: #f5f5f5;
+}
 
-  <!-- ========= HEADER ========= -->
-  <header class="site-header">
-    <div class="container header-inner">
+img {
+  max-width: 100%;
+  display: block;
+}
 
-      <!-- КЛИКАБЕЛЬНЫЙ ЛОГО -->
-      <a href="/football/" class="logo">
-        <span class="logo-mark">52</span>
-        <span class="logo-text">PROJECT 52</span>
-      </a>
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-      <div class="header-right">
-        <nav class="main-nav">
-          <a href="#catalog">Каталог</a>
-          <a href="#about">О нас</a>
-          <a href="#contacts">Контакты</a>
-        </nav>
+button {
+  font: inherit;
+  cursor: pointer;
+}
 
-        <div class="header-actions">
-          <button class="icon-btn" aria-label="Поиск">🔍</button>
-          <button class="icon-btn" aria-label="Корзина">
-            🛒<span class="cart-count" id="cart-count">0</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </header>
+.container {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
 
-  <!-- ========= HERO ========= -->
-  <section class="hero">
-    <div class="container hero-inner">
+/* ========= ШАПКА ========= */
 
-      <div class="hero-content">
-        <h1>Футбольные бутсы и экипировка для игры на максимум</h1>
-        <p>Подбери идеальную пару бутс и форму под свой стиль игры — от любителя до профи.</p>
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(12px);
+  background: rgba(5, 6, 10, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
 
-        <div class="hero-actions">
-          <a href="#catalog" class="btn-primary">Перейти в каталог</a>
-          <button class="btn-ghost">Подбор по параметрам</button>
-        </div>
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  gap: 24px;
+}
 
-        <ul class="hero-benefits">
-          <li>Топ бренды: Nike, adidas, Puma, Mizuno</li>
-          <li>Быстрая доставка по России</li>
-          <li>Официальная продукция</li>
-        </ul>
-      </div>
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
-      <!-- СЛАЙДЕР HERO -->
-      <div class="hero-slider">
-        <div class="hero-slide is-active" data-slide="0">
-          <div class="hero-slide-label">Новинки</div>
-          <h2>Коллекция бутс 2025</h2>
-          <p>Легче, быстрее, агрессивнее. Свежие модели сезона.</p>
-          <a href="#catalog" class="hero-slide-link">Смотреть новинки →</a>
-        </div>
+.logo-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  background: linear-gradient(135deg, #00ff99, #00b7ff);
+  color: #020308;
+  font-size: 14px;
+}
 
-        <div class="hero-slide" data-slide="1">
-          <div class="hero-slide-label hero-slide-label--accent">Конкурс</div>
-          <h2>Выиграй элитные бутсы</h2>
-          <p>Каждый заказ от 10 000 ₽ участвует в розыгрыше.</p>
-          <a href="#catalog" class="hero-slide-link">Участвовать →</a>
-        </div>
+.logo-text {
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 14px;
+}
 
-        <div class="hero-slide" data-slide="2">
-          <div class="hero-slide-label">Скидки</div>
-          <h2>Коллекции прошлого сезона</h2>
-          <p>Скидки до 40% на выборочные модели.</p>
-          <a href="#catalog" class="hero-slide-link">Смотреть скидки →</a>
-        </div>
+.main-nav {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+}
 
-        <button class="hero-nav hero-nav--prev">‹</button>
-        <button class="hero-nav hero-nav--next">›</button>
+.main-nav a {
+  opacity: 0.8;
+}
 
-        <div class="hero-dots">
-          <button class="hero-dot is-active" data-slide="0"></button>
-          <button class="hero-dot" data-slide="1"></button>
-          <button class="hero-dot" data-slide="2"></button>
-        </div>
-      </div>
-    </div>
-  </section>
+.header-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
 
-  <!-- ========= НОВИНКИ ========= -->
-  <section class="new-arrivals">
-    <div class="container">
-      <h2 class="section-title">Новинки</h2>
+.icon-btn {
+  border: none;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 999px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-      <div class="new-arrivals-track" id="new-arrivals-track">
-        <!-- Подгружается JS -->
-      </div>
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
 
-      <div class="swipe-hint">← Листай →</div>
-    </div>
-  </section>
+.cart-count {
+  margin-left: 4px;
+  font-size: 12px;
+}
 
-  <!-- ========= КАТАЛОГ ========= -->
-  <section class="catalog-section" id="catalog">
-    <div class="container catalog-layout">
+/* ========= ГЕРОЙ ========= */
 
-      <!-- ФИЛЬТРЫ -->
-      <aside class="filters" id="filters">
-        <div class="filters-header">
-          <h2>Фильтры</h2>
-          <button class="filters-toggle" id="filters-toggle">Скрыть</button>
-        </div>
+.hero {
+  padding: 40px 0 56px;
+  background: radial-gradient(circle at top left, #0b2430, #05060a 50%);
+}
 
-        <div class="filter-group">
-          <h3>Категория</h3>
-          <label><input type="radio" name="category" value="all" checked /> Все товары</label>
-          <label><input type="radio" name="category" value="boots" /> Бутсы</label>
-          <label><input type="radio" name="category" value="apparel" /> Одежда</label>
-        </div>
+.hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 40px;
+  align-items: center;
+}
 
-        <div class="filter-group">
-          <h3>Бренд</h3>
-          <label><input type="checkbox" name="brand" value="Nike" /> Nike</label>
-          <label><input type="checkbox" name="brand" value="adidas" /> adidas</label>
-          <label><input type="checkbox" name="brand" value="Puma" /> Puma</label>
-          <label><input type="checkbox" name="brand" value="Mizuno" /> Mizuno</label>
-        </div>
+.hero h1 {
+  font-size: 32px;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
 
-        <div class="filter-group">
-          <h3>Цена</h3>
-          <div class="price-inputs">
-            <input type="number" id="price-min" placeholder="от" />
-            <input type="number" id="price-max" placeholder="до" />
-          </div>
-          <button class="btn-small" id="price-apply">Применить</button>
-        </div>
+.hero p {
+  margin: 0 0 24px;
+  opacity: 0.85;
+  max-width: 480px;
+}
 
-        <div class="filter-group">
-          <h3>Уровень</h3>
-          <label><input type="checkbox" name="level" value="elite" /> Элитный</label>
-          <label><input type="checkbox" name="level" value="pro" /> Профессиональный</label>
-          <label><input type="checkbox" name="level" value="training" /> Тренировочный</label>
-          <label><input type="checkbox" name="level" value="amateur" /> Любительский</label>
-        </div>
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
 
-        <button class="btn-secondary" id="reset-filters">Сбросить фильтры</button>
-      </aside>
+.btn-primary,
+.btn-secondary,
+.btn-ghost,
+.btn-small {
+  border-radius: 999px;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+}
 
-      <!-- ПРОДУКТЫ -->
-      <div class="catalog-content">
-        <div class="catalog-top">
-          <h2>Каталог</h2>
-          <div class="catalog-controls">
-            <span id="products-count">Найдено: 0 товаров</span>
-            <select id="sort-select">
-              <option value="default">Сортировка</option>
-              <option value="price-asc">Цена ↑</option>
-              <option value="price-desc">Цена ↓</option>
-            </select>
-          </div>
-        </div>
+.btn-primary {
+  background: linear-gradient(135deg, #00ff99, #00b7ff);
+  color: #020308;
+  font-weight: 600;
+}
 
-        <div class="products-grid" id="products-grid"></div>
+.btn-primary:hover {
+  filter: brightness(1.05);
+}
 
-        <button class="btn-load-more" id="load-more">Показать ещё</button>
-      </div>
-    </div>
-  </section>
+.btn-ghost {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: transparent;
+  color: #f5f5f5;
+}
 
-  <!-- ========= ABOUT ========= -->
-  <section class="about-section" id="about">
-    <div class="container about-layout">
-      <div>
-        <h2>Магазин для тех, кто живёт футболом</h2>
-        <p>Мы собрали лучшие модели бутс и одежды, чтобы ты мог играть в удовольствие.</p>
-        <ul class="about-list">
-          <li>Актуальные коллекции</li>
-          <li>Подбор размеров</li>
-          <li>Честные условия возврата</li>
-        </ul>
-      </div>
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
 
-      <div class="about-badge">
-        <span>1000+</span>
-        <p>довольных игроков</p>
-      </div>
-    </div>
-  </section>
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.04);
+  color: #f5f5f5;
+}
 
-  <!-- ========= FOOTER ========= -->
-  <footer class="site-footer" id="contacts">
-    <div class="container footer-layout">
-      <div class="footer-col">
-        <a href="/football/" class="logo">
-          <span class="logo-mark">52</span>
-          <span class="logo-text">PROJECT 52</span>
-        </a>
-        <p>Интернет-магазин футбольной экипировки.</p>
-      </div>
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
 
-      <div class="footer-col">
-        <h3>Контакты</h3>
-        <p>Тел: <a href="tel:+78000000000">8 800 000-00-00</a></p>
-        <p>Email: <a href="mailto:info@footboot.ru">info@footboot.ru</a></p>
-      </div>
+.btn-small {
+  padding: 6px 14px;
+  font-size: 13px;
+  background: rgba(255, 255, 255, 0.08);
+}
 
-      <div class="footer-col">
-        <h3>Информация</h3>
-        <ul>
-          <li><a href="#">Доставка</a></li>
-          <li><a href="#">Возврат</a></li>
-          <li><a href="#">Оферта</a></li>
-        </ul>
-      </div>
-    </div>
+.hero-benefits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+  opacity: 0.9;
+}
 
-    <div class="footer-bottom">
-      <div class="container">
-        © Project 52, 2025
-      </div>
-    </div>
-  </footer>
+.hero-benefits li + li {
+  margin-top: 4px;
+}
 
-  <!-- ПРАВИЛЬНЫЙ ПУТЬ К JS -->
-  <script src="../JS/script.js" defer></script>
+/* ========= КАТАЛОГ ========= */
 
-</body>
-</html>
+.catalog-section {
+  padding: 32px 0 48px;
+}
+
+.catalog-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 24px;
+}
+
+/* ========= ПРЕМИАЛЬНЫЙ ФИЛЬТР ========= */
+
+.filters {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(18px) saturate(160%);
+  border-radius: 26px;
+  padding: 22px 24px 28px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.25),
+    0 4px 12px rgba(255, 255, 255, 0.06);
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.filters-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filters h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.filters-toggle {
+  border: none;
+  background: transparent;
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+.filters-toggle:hover {
+  opacity: 0.9;
+}
+
+.filter-group {
+  padding: 18px 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filter-group h3 {
+  margin: 0 0 4px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+}
+
+/* Чекбоксы / радио */
+
+.filter-group label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  opacity: 0.85;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.filter-group label:hover {
+  opacity: 1;
+}
+
+.filter-group input[type="checkbox"],
+.filter-group input[type="radio"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.06);
+  display: grid;
+  place-content: center;
+  transition: 0.25s ease;
+}
+
+.filter-group input[type="radio"] {
+  border-radius: 50%;
+}
+
+.filter-group input[type="checkbox"]:checked,
+.filter-group input[type="radio"]:checked {
+  background: linear-gradient(135deg, #00ff99, #00b7ff);
+  border-color: transparent;
+  box-shadow: 0 0 12px rgba(0, 255, 153, 0.4);
+}
+
+.filter-group input[type="checkbox"]:checked::after {
+  content: "✓";
+  font-size: 12px;
+  color: #020308;
+  font-weight: 700;
+}
+
+.filter-group input[type="radio"]:checked::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #020308;
+}
+
+/* Цена */
+
+.price-inputs {
+  display: flex;
+  gap: 10px;
+}
+
+.price-inputs input {
+  width: 50%;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.05);
+  color: inherit;
+  font-size: 14px;
+  transition: border 0.25s;
+}
+
+.price-inputs input:focus {
+  border-color: rgba(0, 255, 153, 0.6);
+  outline: none;
+}
+
+/* Кнопки фильтра */
+
+.btn-small,
+.btn-secondary {
+  border-radius: 999px;
+  font-size: 13px;
+  padding: 8px 20px;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  transition: 0.2s;
+}
+
+.btn-small:hover,
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* Свёрнутый фильтр (мобилка) */
+
+.filters-collapsed {
+  max-height: 48px;
+  overflow: hidden;
+  padding-bottom: 8px;
+}
+
+/* Каталог */
+
+.catalog-content {
+  min-width: 0;
+}
+
+.catalog-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.catalog-top h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.catalog-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+}
+
+#sort-select {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(5, 6, 10, 0.9);
+  color: inherit;
+}
+
+/* ========= КАРТОЧКИ ТОВАРОВ ========= */
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.product-card {
+  border-radius: 24px;
+  padding: 18px 18px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow:
+    0 8px 18px rgba(0, 0, 0, 0.25),
+    0 2px 5px rgba(255, 255, 255, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.32),
+    0 4px 10px rgba(255, 255, 255, 0.05);
+}
+
+.product-image-wrap {
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0e1118, #1b1f2b);
+  padding: 18px;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.03);
+}
+
+.product-image-wrap img {
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.35));
+}
+
+.product-tag {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #00ff99, #00b7ff);
+  color: #020308;
+  box-shadow: 0 4px 12px rgba(0, 255, 153, 0.2);
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.product-title {
+  font-size: 15px;
+  font-weight: 500;
+  opacity: 0.95;
+}
+
+.product-meta {
+  font-size: 12px;
+  opacity: 0.65;
+}
+
+.product-meta span + span::before {
+  content: "•";
+  margin: 0 6px;
+  opacity: 0.5;
+}
+
+.product-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.product-price {
+  font-weight: 600;
+  font-size: 17px;
+  color: #eafff7;
+}
+
+.product-btn {
+  border-radius: 14px;
+  border: none;
+  padding: 8px 16px;
+  font-size: 13px;
+  background: rgba(0, 255, 153, 0.15);
+  color: #eafff7;
+  backdrop-filter: blur(5px);
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.product-btn:hover {
+  background: rgba(0, 255, 153, 0.28);
+  transform: translateY(-2px);
+}
+
+/* ========= О НАС ========= */
+
+.about-section {
+  padding: 40px 0 48px;
+  background: radial-gradient(circle at right, #131629, #05060a 60%);
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
+}
+
+.about-section h2 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.about-section p {
+  opacity: 0.85;
+  max-width: 520px;
+}
+
+.about-list {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+  font-size: 14px;
+}
+
+.about-list li + li {
+  margin-top: 6px;
+}
+
+.about-badge {
+  border-radius: 20px;
+  padding: 20px;
+  border: 1px solid rgba(0, 255, 153, 0.5);
+  text-align: center;
+  max-width: 240px;
+  justify-self: end;
+}
+
+.about-badge span {
+  display: block;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+/* ========= ФУТЕР ========= */
+
+.site-footer {
+  padding: 24px 0 10px;
+  background: #020308;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 13px;
+}
+
+.footer-layout {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-bottom: 12px;
+}
+
+.footer-col h3 {
+  margin-top: 0;
+  font-size: 14px;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col li + li {
+  margin-top: 4px;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  padding-top: 8px;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* ========= АДАПТИВ ========= */
+
+@media (max-width: 900px) {
+  .hero-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .catalog-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .filters {
+    order: -1;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .about-badge {
+    justify-self: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .header-inner {
+    gap: 12px;
+  }
+
+  .main-nav {
+    display: none;
+  }
+
+  .hero {
+    padding-top: 24px;
+  }
+
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .products-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .footer-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ========= HERO SLIDER ========= */
+
+.hero-slider {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  min-height: 220px;
+  border-radius: 26px;
+  padding: 18px 18px 32px;
+  background: radial-gradient(circle at top left, #00b7ff, #020308 60%);
+  overflow: hidden;
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.6);
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  padding: 18px 18px 32px;
+  opacity: 0;
+  transform: translateX(12px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.hero-slide.is-active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.hero-slide-label {
+  align-self: flex-start;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  background: rgba(2, 3, 8, 0.85);
+  color: #f5f5f5;
+  margin-bottom: 10px;
+}
+
+.hero-slide-label--accent {
+  background: #ffdd35;
+  color: #020308;
+}
+
+.hero-slide h2 {
+  margin: 0 0 6px;
+  font-size: 20px;
+}
+
+.hero-slide p {
+  margin: 0 0 10px;
+  font-size: 13px;
+  max-width: 260px;
+}
+
+.hero-slide-link {
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.hero-slide-link::after {
+  content: "↗";
+  font-size: 11px;
+}
+
+.hero-nav {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(2, 3, 8, 0.6);
+  color: #f5f5f5;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-nav--prev {
+  right: 40px;
+}
+
+.hero-nav:hover {
+  background: rgba(2, 3, 8, 0.85);
+}
+
+.hero-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 18px;
+  display: flex;
+  gap: 6px;
+}
+
+.hero-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(2, 3, 8, 0.35);
+}
+
+.hero-dot.is-active {
+  width: 18px;
+  background: #ffffff;
+}
+
+@media (max-width: 900px) {
+  .hero-slider {
+    max-width: 100%;
+    margin-top: 16px;
+  }
+
+  .hero-slide p {
+    max-width: none;
+  }
+}
+
+/* ========= ВЫРАВНИВАНИЕ HEADER-ПРАВОГО БЛОКА ========= */
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-left: auto;
+}
+
+/* ========= ПЛАВНАЯ ПОДСВЕТКА МЕНЮ ========= */
+
+.main-nav a {
+  position: relative;
+  padding-bottom: 4px;
+  opacity: 0.8;
+  transition: color 0.25s ease, opacity 0.25s ease;
+}
+
+.main-nav a:hover {
+  opacity: 1;
+  color: #ffffff;
+}
+
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(135deg, #00ff99, #00b7ff);
+  border-radius: 999px;
+  transition: width 0.28s ease;
+}
+
+.main-nav a:hover::after {
+  width: 100%;
+}
+
+/* ========= КНОПКА "ПОКАЗАТЬ ЕЩЁ" ========= */
+
+.btn-load-more {
+  margin: 28px auto 0;
+  display: block;
+  padding: 12px 28px;
+  font-size: 15px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: #f5f5f5;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.btn-load-more:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* ========= ВЕРТИКАЛЬНЫЕ БАННЕРЫ (ЛЕНТА) ========= */
+
+.categories-section {
+  padding: 12px 0 24px;
+}
+
+.cat-banners {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+}
+
+.cat-banner {
+  display: block;
+  padding: 18px;
+  border-radius: 18px;
+  background: radial-gradient(circle at top left, #141827, #05060a 70%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.25s ease, background 0.25s ease;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+}
+
+.cat-banner.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.cat-banner:hover {
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+}
+
+.cat-banner-label {
+  display: inline-flex;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  background: rgba(255, 255, 255, 0.1);
+  margin-bottom: 8px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cat-banner-label--dark {
+  background: #020308;
+  color: #ffdd35;
+}
+
+.cat-banner h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+}
+
+.cat-banner p {
+  margin: 0 0 10px;
+  font-size: 13px;
+  opacity: 0.88;
+}
+
+.cat-banner-link {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Последний шанс баннер */
+
+.cat-banner--last-chance {
+  background: radial-gradient(circle at top left, #ffdd35, #8a5a00 55%, #05060a 90%);
+  color: #020308;
+  border-color: rgba(255, 221, 53, 0.7);
+}
+
+/* Десктоп-сетка баннеров */
+
+@media (min-width: 900px) {
+  .cat-banners {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+/* ============================
+   НОВИНКИ — ГОРИЗОНТАЛЬНЫЙ СКРОЛЛ
+   ============================ */
+
+.new-products-section {
+  padding: 36px 0 44px;
+}
+
+.new-products-title {
+  margin: 0 0 16px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* контейнер с горизонтальной прокруткой */
+.new-products-scroll {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 10px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+
+  /* Скрываем стандартный некрасивый скролл */
+  scrollbar-width: none;
+}
+.new-products-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* карточки новинок такие же по стилю как продуктовые — но адаптированы */
+.new-product-card {
+  flex: 0 0 220px;
+  scroll-snap-align: start;
+
+  border-radius: 24px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(14px);
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.new-product-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 16px 30px rgba(0, 0, 0, 0.35),
+    0 4px 10px rgba(255, 255, 255, 0.05);
+}
+
+/* изображение */
+.new-product-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 18px;
+  background: #0f1117;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  overflow: hidden;
+
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.03);
+}
+
+.new-product-image img {
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.35));
+}
+
+/* текст */
+.new-product-title {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.new-product-price {
+  font-size: 16px;
+  font-weight: 600;
+  color: #eafff7;
+}
+
+/* кнопка */
+.new-product-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-size: 13px;
+
+  background: rgba(0, 255, 153, 0.18);
+  color: #ffffff;
+  backdrop-filter: blur(5px);
+
+  transition: 0.25s ease;
+}
+
+.new-product-btn:hover {
+  background: rgba(0, 255, 153, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Адаптив */
+@media (max-width: 600px) {
+  .new-product-card {
+    flex: 0 0 180px;
+  }
+}
